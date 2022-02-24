@@ -7,17 +7,18 @@ const get = async () => productModel.get();
 
 const getById = async (id) => productModel.getById(id); 
 
+const remove = async (id) => productModel.remove(id);
+
 // <-- IN PROGRESS -->
 
 // <-- TO DO -->
 // const create = () => {};
 // const update = () => {};
-// const remove = () => {};
 
 module.exports = {
   get,
   getById,
   // create,
   // update,
-  // remove,
+  remove,
 };

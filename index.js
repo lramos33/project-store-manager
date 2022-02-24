@@ -13,6 +13,7 @@ app.use(express.json());
 // <-- DONE -->
 app.get('/products', productController.get);
 app.get('/products/:id', productController.getById);
+app.delete('/products/:id', productController.remove);
 
 app.get('/sales', salesController.get);
 app.get('/sales/:id', salesController.getById);
@@ -21,8 +22,7 @@ app.get('/sales/:id', salesController.getById);
 
 // <-- TO DO -->
 // app.post('/products', );
-// app.put('/product/:id', );
-// app.delete('/product/:id', );
+// app.put('/products/:id', );
 
 // app.post('/sales', );
 // app.put('sales/:id', );

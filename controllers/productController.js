@@ -1,6 +1,7 @@
 const productService = require('../services/productService');
 
 const HTTP_OK = 200;
+const HTTP_NO_CONTENT = 204;
 const HTTP_NOT_FOUND = 404;
 
 // <-- TESTED -->
@@ -26,17 +27,27 @@ const getById = async (req, res, next) => {
   }
 };
 
+const remove = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const affectedRows = await productService.remove(+id);
+    if (!affectedRows) return res.status(HTTP_NOT_FOUND).json({ message: 'Product not found' });
+    return res.status(HTTP_NO_CONTENT).end();
+  } catch (error) {
+    next(error);
+  }
+};
+
 // <-- IN PROGRESS -->
 
 // <-- TO DO -->
 // const create = (req, res, next) => {};
 // const update = (req, res, next) => {};
-// const remove = (req, res, next) => {};
 
 module.exports = {
   get,
   getById,
   // create,
   // update,
-  // remove,
+  remove,
 };
