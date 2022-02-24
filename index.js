@@ -11,21 +11,22 @@ app.use(express.json());
 // <-- TESTED -->
 
 // <-- DONE -->
+app.get('/products', productController.get);
+app.get('/products/:id', productController.getById);
+
+app.get('/sales', salesController.get);
+app.get('/sales/:id', salesController.getById);
 
 // <-- IN PROGRESS -->
 
 // <-- TO DO -->
-app.get('/products', );
-app.get('/products/:id', );
-app.post('/products', );
-app.put('/product/:id', );
-app.delete('/product/:id', );
+// app.post('/products', );
+// app.put('/product/:id', );
+// app.delete('/product/:id', );
 
-app.get('/sales', );
-app.get('/sales/:id', );
-app.post('/sales', );
-app.put('sales/:id', );
-app.delete('sales/:id',);
+// app.post('/sales', );
+// app.put('sales/:id', );
+// app.delete('sales/:id',);
 
 app.use(error);
 

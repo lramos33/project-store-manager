@@ -1,4 +1,4 @@
-const salesValidationService = require('../services/salesValidationService');
+// const salesValidationService = require('../services/salesValidationService');
 
 // <-- TESTED -->
 
@@ -7,6 +7,6 @@ const salesValidationService = require('../services/salesValidationService');
 // <-- IN PROGRESS -->
 
 // <-- TO DO -->
-const salesValidation = (req, res, next) => {};
+// const salesValidation = (req, res, next) => {};
 
-module.exports = salesValidation;
+// module.exports = salesValidation;
