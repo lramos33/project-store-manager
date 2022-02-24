@@ -1,6 +1,7 @@
 const productService = require('../services/productService');
 
 const HTTP_OK = 200;
+const HTTP_CREATED = 201;
 const HTTP_NO_CONTENT = 204;
 const HTTP_NOT_FOUND = 404;
 
@@ -39,15 +40,23 @@ const remove = async (req, res, next) => {
 };
 
 // <-- IN PROGRESS -->
+const create = async (req, res, next) => {
+  try {
+    const { name, quantity } = req.body;
+    const productCreated = await productService.create(name, quantity);
+    return res.status(HTTP_CREATED).json(productCreated);
+  } catch (error) {
+    next(error);
+  }
+};
 
 // <-- TO DO -->
-// const create = (req, res, next) => {};
 // const update = (req, res, next) => {};
 
 module.exports = {
   get,
   getById,
-  // create,
+  create,
   // update,
   remove,
 };

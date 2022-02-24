@@ -4,6 +4,7 @@ const express = require('express');
 const error = require('./middlewares/error');
 const productController = require('./controllers/productController');
 const salesController = require('./controllers/salesController');
+const productValidation = require('./middlewares/productValidation');
 
 const app = express();
 app.use(express.json());
@@ -19,9 +20,9 @@ app.get('/sales', salesController.get);
 app.get('/sales/:id', salesController.getById);
 
 // <-- IN PROGRESS -->
+app.post('/products', productValidation, productController.create);
 
 // <-- TO DO -->
-// app.post('/products', );
 // app.put('/products/:id', );
 
 // app.post('/sales', );
