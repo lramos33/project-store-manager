@@ -18,7 +18,7 @@ const get = async (_req, res, next) => {
 const getById = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const result = await salesService.getById(id);
+    const result = await salesService.getById(+id);
     if (result.length === 0) return res.status(HTTP_NOT_FOUND).json({ message: 'Sale not found' });
     return res.status(HTTP_OK).json(result);
   } catch (error) {
