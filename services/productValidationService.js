@@ -1,34 +1,44 @@
 const productModel = require('../models/productModel');
 
+const HTTP_BAD_REQUEST = 400;
+const HTTP_UNPROCESSABLE_ENTITY = 422;
 const HTTP_CONFLICT = 409;
 
 // <-- TESTED -->
 
 // <-- DONE -->
 const validateProductName = async (name) => {
+  if (!name) {
+    return { 
+      code: HTTP_BAD_REQUEST,
+      message: '"name" is required' };
+  }
+
+  if (name.length < 5) {
+    return { 
+      code: HTTP_UNPROCESSABLE_ENTITY,
+      message: '"name" length must be at least 5 characters long' };
+  }
+
   const registeredProduct = await productModel.getByName(name);
-  switch (true) {
-    case registeredProduct.length !== 0: 
-      return { code: HTTP_CONFLICT, message: 'Product already exists' };
-    case !name: 
-      return { code: HTTP_CONFLICT, message: 'Name required' };
-    case typeof name !== 'string': 
-      return { code: HTTP_CONFLICT, message: 'Name must be a string' };
-    case name.length < 5: 
-      return { code: HTTP_CONFLICT, message: 'Name must have at least 5 characters' };
-    default: 
-      return undefined;
+  if (registeredProduct.length !== 0) {
+    return {
+      code: HTTP_CONFLICT,
+      message: 'Product already exists' };
   }
 };
 
 const validateProductQuantity = (quantity) => {
-  switch (true) {
-    case !quantity: 
-      return { code: HTTP_CONFLICT, message: 'Quantity required' };
-    case typeof quantity !== 'number': 
-      return { code: HTTP_CONFLICT, message: 'Quantity must be a number' };
-    default: 
-      return undefined;
+  if (!quantity) {
+    return { 
+      code: HTTP_BAD_REQUEST,
+      message: '"quantity" is required' };
+  }
+
+  if (quantity <= 0) {
+    return {
+      code: HTTP_UNPROCESSABLE_ENTITY,
+      message: '"quantity" must be greater than or equal to 1' };
   }
 };
 
