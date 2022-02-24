@@ -4,7 +4,7 @@ const express = require('express');
 const error = require('./middlewares/error');
 const productController = require('./controllers/productController');
 const salesController = require('./controllers/salesController');
-const productValidation = require('./middlewares/productValidation');
+const productValidation = require('./middlewares/productValidationMiddleware');
 
 const app = express();
 app.use(express.json());

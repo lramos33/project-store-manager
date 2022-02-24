@@ -3,8 +3,6 @@ const productValidationService = require('../services/productValidationService')
 // <-- TESTED -->
 
 // <-- DONE -->
-
-// <-- IN PROGRESS -->
 const productValidation = async (req, res, next) => {
   try {
     const { name, quantity } = req.body;
@@ -21,6 +19,8 @@ const productValidation = async (req, res, next) => {
     next(error);
   }
 };
+
+// <-- IN PROGRESS -->
 
 // <-- TO DO -->
 

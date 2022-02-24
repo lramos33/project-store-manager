@@ -27,6 +27,14 @@ const getByName = async (name) => {
   return result;
 };
 
+const create = async (name, quantity) => {
+  const [result] = await connection.execute(`
+    INSERT INTO StoreManager.products
+    (name, quantity) VALUES (?, ?)`,
+    [name, quantity]);
+  return { id: result.insertId, name, quantity };
+};
+
 const remove = async (id) => {
   const [result] = await connection.execute(`
     DELETE FROM StoreManager.products
@@ -36,13 +44,6 @@ const remove = async (id) => {
 };
 
 // <-- IN PROGRESS -->
-const create = async (name, quantity) => {
-  const [result] = await connection.execute(`
-    INSERT INTO StoreManager.products
-    (name, quantity) VALUES (?, ?)`,
-    [name, quantity]);
-  return { id: result.insertId, name, quantity };
-};
 
 // <-- TO DO -->
 // const update = () => {};

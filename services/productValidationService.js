@@ -5,8 +5,6 @@ const HTTP_CONFLICT = 409;
 // <-- TESTED -->
 
 // <-- DONE -->
-
-// <-- IN PROGRESS -->
 const validateProductName = async (name) => {
   const registeredProduct = await productModel.getByName(name);
   switch (true) {
@@ -33,6 +31,8 @@ const validateProductQuantity = (quantity) => {
       return undefined;
   }
 };
+
+// <-- IN PROGRESS -->
 
 // <-- TO DO -->
 

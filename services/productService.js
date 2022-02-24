@@ -10,6 +10,7 @@ const getById = async (id) => productModel.getById(id);
 const remove = async (id) => productModel.remove(id);
 
 const create = async (name, quantity) => productModel.create(name, quantity);
+
 // <-- IN PROGRESS -->
 
 // <-- TO DO -->
