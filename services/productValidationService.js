@@ -1,6 +1,7 @@
 const productModel = require('../models/productModel');
 
 const HTTP_BAD_REQUEST = 400;
+const HTTP_NOT_FOUND = 404;
 const HTTP_UNPROCESSABLE_ENTITY = 422;
 const HTTP_CONFLICT = 409;
 
@@ -44,8 +45,18 @@ const checkRegisteredProduct = async (name) => {
   }
 };
 
+const checkIfProductExists = async (id) => {
+  const product = await productModel.getById(id);
+  if (!product) {
+    return {
+      code: HTTP_NOT_FOUND,
+      message: 'Product not found'};
+  }
+};
+
 module.exports = {
   validateProductName,
   validateProductQuantity,
   checkRegisteredProduct,
+  checkIfProductExists,
 };

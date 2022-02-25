@@ -12,12 +12,12 @@ const remove = async (id) => productModel.remove(id);
 const create = async (name, quantity) => productModel.create(name, quantity);
 
 // <-- TO DO -->
-// const update = () => {};
+const update = async (id, name, quantity) => productModel.update(id, name, quantity);
 
 module.exports = {
   get,
   getById,
   create,
-  // update,
+  update,
   remove,
 };

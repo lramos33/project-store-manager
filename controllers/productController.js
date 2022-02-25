@@ -54,18 +54,21 @@ const remove = async (req, res, next) => {
 };
 
 // <-- TO DO -->
-// const update = (req, res, next) => {
-//   try {
-    
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+const update = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { name, quantity } = req.body;
+    const updatedProduct = await productService.update(+id, name, quantity);
+    return res.status(HTTP_OK).json(updatedProduct);
+  } catch (error) {
+    next(error);
+  }
+};
 
 module.exports = {
   get,
   getById,
   create,
-  // update,
+  update,
   remove,
 };

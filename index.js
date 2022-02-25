@@ -7,6 +7,7 @@ const salesController = require('./controllers/salesController');
 const error = require('./middlewares/error');
 const bodyProductValidation = require('./middlewares/bodyProductValidation');
 const checkRegisteredProduct = require('./middlewares/checkRegisteredProduct');
+const checkIfProductExists = require('./middlewares/checkIfProductExists');
 
 const app = express();
 app.use(express.json());
@@ -18,14 +19,14 @@ app.get('/products', productController.get);
 app.get('/products/:id', productController.getById);
 app.delete('/products/:id', productController.remove);
 app.post('/products', bodyProductValidation, checkRegisteredProduct, productController.create);
+app.put('/products/:id', bodyProductValidation, checkIfProductExists, productController.update);
 
 app.get('/sales', salesController.get);
 app.get('/sales/:id', salesController.getById);
 
 // <-- TO DO -->
-// app.put('/products/:id', bodyProductValidation);
+app.post('/sales', );
 
-// app.post('/sales', );
 // app.put('sales/:id', );
 // app.delete('sales/:id',);
 
