@@ -3,10 +3,10 @@ const productValidationService = require('../services/productValidationService')
 // <-- TESTED -->
 
 // <-- DONE -->
-const bodyProductValidation = async (req, res, next) => {
+const bodyProductValidation = (req, res, next) => {
   try {
     const { name, quantity } = req.body;
-    const nameError = await productValidationService.validateProductName(name);
+    const nameError = productValidationService.validateProductName(name);
     const quantityError = productValidationService.validateProductQuantity(quantity);
     if (nameError) {
       return res.status(nameError.code).json({ message: nameError.message });
