@@ -44,12 +44,12 @@ const remove = async (id) => {
 
 // <-- TO DO -->
 const update = async (id, name, quantity) => {
-  const [result] = await connection.execute(`
+  await connection.execute(`
     UPDATE StoreManager.products
     SET name = ?, quantity = ?
     WHERE id = ?`,
     [name, quantity, id]);
-  return { id, name, quantity }
+  return { id, name, quantity };
 };
 
 module.exports = {

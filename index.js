@@ -3,11 +3,11 @@ const express = require('express');
 
 const productController = require('./controllers/productController');
 const salesController = require('./controllers/salesController');
-
 const error = require('./middlewares/error');
 const bodyProductValidation = require('./middlewares/bodyProductValidation');
 const checkRegisteredProduct = require('./middlewares/checkRegisteredProduct');
 const checkIfProductExists = require('./middlewares/checkIfProductExists');
+const bodySalesValidation = require('./middlewares/bodySalesValidation');
 
 const app = express();
 app.use(express.json());
@@ -25,7 +25,7 @@ app.get('/sales', salesController.get);
 app.get('/sales/:id', salesController.getById);
 
 // <-- TO DO -->
-app.post('/sales', );
+// app.post('/sales', bodySalesValidation);
 
 // app.put('sales/:id', );
 // app.delete('sales/:id',);

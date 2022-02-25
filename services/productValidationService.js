@@ -50,7 +50,7 @@ const checkIfProductExists = async (id) => {
   if (!product) {
     return {
       code: HTTP_NOT_FOUND,
-      message: 'Product not found'};
+      message: 'Product not found' };
   }
 };
 
