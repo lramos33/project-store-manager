@@ -7,7 +7,7 @@ const HTTP_CONFLICT = 409;
 // <-- TESTED -->
 
 // <-- DONE -->
-const validateProductName = async (name) => {
+const validateProductName = (name) => {
   if (!name) {
     return { 
       code: HTTP_BAD_REQUEST,
@@ -18,13 +18,6 @@ const validateProductName = async (name) => {
     return { 
       code: HTTP_UNPROCESSABLE_ENTITY,
       message: '"name" length must be at least 5 characters long' };
-  }
-
-  const registeredProduct = await productModel.getByName(name);
-  if (registeredProduct.length !== 0) {
-    return {
-      code: HTTP_CONFLICT,
-      message: 'Product already exists' };
   }
 };
 
@@ -42,11 +35,17 @@ const validateProductQuantity = (quantity) => {
   }
 };
 
-// <-- IN PROGRESS -->
-
-// <-- TO DO -->
+const checkRegisteredProduct = async (name) => {
+  const registeredProduct = await productModel.getByName(name);
+  if (registeredProduct.length !== 0) {
+    return {
+      code: HTTP_CONFLICT,
+      message: 'Product already exists' };
+  }
+};
 
 module.exports = {
   validateProductName,
   validateProductQuantity,
+  checkRegisteredProduct,
 };

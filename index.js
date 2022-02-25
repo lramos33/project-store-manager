@@ -1,10 +1,12 @@
 require('dotenv').config();
 const express = require('express');
 
-const error = require('./middlewares/error');
 const productController = require('./controllers/productController');
 const salesController = require('./controllers/salesController');
-const productValidation = require('./middlewares/productValidationMiddleware');
+
+const error = require('./middlewares/error');
+const bodyProductValidation = require('./middlewares/bodyProductValidation');
+const checkRegisteredProduct = require('./middlewares/checkRegisteredProduct');
 
 const app = express();
 app.use(express.json());
@@ -15,15 +17,13 @@ app.use(express.json());
 app.get('/products', productController.get);
 app.get('/products/:id', productController.getById);
 app.delete('/products/:id', productController.remove);
+app.post('/products', bodyProductValidation, checkRegisteredProduct, productController.create);
 
 app.get('/sales', salesController.get);
 app.get('/sales/:id', salesController.getById);
 
-// <-- IN PROGRESS -->
-app.post('/products', productValidation, productController.create);
-
 // <-- TO DO -->
-// app.put('/products/:id', );
+// app.put('/products/:id', bodyProductValidation);
 
 // app.post('/sales', );
 // app.put('sales/:id', );

@@ -26,8 +26,6 @@ const getById = async (req, res, next) => {
   }
 };
 
-// <-- IN PROGRESS -->
-
 // <-- TO DO -->
 // const create = (req, res, next) => {};
 // const update = (req, res, next) => {};

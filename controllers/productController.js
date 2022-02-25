@@ -53,10 +53,14 @@ const remove = async (req, res, next) => {
   }
 };
 
-// <-- IN PROGRESS -->
-
 // <-- TO DO -->
-// const update = (req, res, next) => {};
+// const update = (req, res, next) => {
+//   try {
+    
+//   } catch (error) {
+//     next(error);
+//   }
+// };
 
 module.exports = {
   get,

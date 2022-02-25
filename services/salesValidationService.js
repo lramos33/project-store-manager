@@ -2,13 +2,11 @@
 
 // <-- DONE -->
 
-// <-- IN PROGRESS -->
-
 // <-- TO DO -->
-const validateProductId = () => {};
-const validateQuantity = () => {};
+// const validateProductId = () => {};
+// const validateQuantity = () => {};
 
-module.exports = {
-  validateProductId,
-  validateQuantity,
-};
+// module.exports = {
+//   validateProductId,
+//   validateQuantity,
+// };

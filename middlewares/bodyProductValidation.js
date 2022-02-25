@@ -3,7 +3,7 @@ const productValidationService = require('../services/productValidationService')
 // <-- TESTED -->
 
 // <-- DONE -->
-const productValidation = async (req, res, next) => {
+const bodyProductValidation = async (req, res, next) => {
   try {
     const { name, quantity } = req.body;
     const nameError = await productValidationService.validateProductName(name);
@@ -20,8 +20,4 @@ const productValidation = async (req, res, next) => {
   }
 };
 
-// <-- IN PROGRESS -->
-
-// <-- TO DO -->
-
-module.exports = productValidation;
+module.exports = bodyProductValidation;

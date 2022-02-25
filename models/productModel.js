@@ -43,8 +43,6 @@ const remove = async (id) => {
   return result.affectedRows;
 };
 
-// <-- IN PROGRESS -->
-
 // <-- TO DO -->
 // const update = () => {};
 

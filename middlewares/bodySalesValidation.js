@@ -4,9 +4,7 @@
 
 // <-- DONE -->
 
-// <-- IN PROGRESS -->
-
 // <-- TO DO -->
-// const salesValidation = (req, res, next) => {};
+// const bodySalesValidation = (req, res, next) => {};
 
-// module.exports = salesValidation;
+// module.exports = bodySalesValidation;

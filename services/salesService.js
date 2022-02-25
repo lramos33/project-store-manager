@@ -7,8 +7,6 @@ const get = async () => salesModel.get();
 
 const getById = async (id) => salesModel.getById(id);
 
-// <-- IN PROGRESS -->
-
 // <-- TO DO -->
 // const create = () => {};
 // const update = () => {};
