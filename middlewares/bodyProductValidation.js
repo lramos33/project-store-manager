@@ -1,4 +1,4 @@
-const productValidationService = require('../services/productValidationService');
+const validationService = require('../services/validationService');
 
 // <-- TESTED -->
 
@@ -6,8 +6,8 @@ const productValidationService = require('../services/productValidationService')
 const bodyProductValidation = (req, res, next) => {
   try {
     const { name, quantity } = req.body;
-    const nameError = productValidationService.validateProductName(name);
-    const quantityError = productValidationService.validateProductQuantity(quantity);
+    const nameError = validationService.validateProductName(name);
+    const quantityError = validationService.validateProductQuantity(quantity);
     if (nameError) {
       return res.status(nameError.code).json({ message: nameError.message });
     }

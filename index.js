@@ -23,11 +23,10 @@ app.put('/products/:id', bodyProductValidation, checkIfProductExists, productCon
 
 app.get('/sales', salesController.get);
 app.get('/sales/:id', salesController.getById);
+app.post('/sales', bodySalesValidation);
+app.put('/sales/:id', bodySalesValidation);
 
 // <-- TO DO -->
-// app.post('/sales', bodySalesValidation);
-
-// app.put('sales/:id', );
 // app.delete('sales/:id',);
 
 app.use(error);

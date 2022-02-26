@@ -23,7 +23,7 @@ const validateProductName = (name) => {
 };
 
 const validateProductQuantity = (quantity) => {
-  if (!quantity) {
+  if (quantity === undefined) {
     return { 
       code: HTTP_BAD_REQUEST,
       message: '"quantity" is required' };
@@ -54,9 +54,18 @@ const checkIfProductExists = async (id) => {
   }
 };
 
+const validateProductId = (id) => {
+  if (!id) {
+    return {
+      code: HTTP_BAD_REQUEST,
+      message: '"productId" is required' };
+  }
+};
+
 module.exports = {
   validateProductName,
   validateProductQuantity,
   checkRegisteredProduct,
   checkIfProductExists,
+  validateProductId,
 };

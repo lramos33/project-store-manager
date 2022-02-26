@@ -1,4 +1,4 @@
-const productValidationService = require('../services/productValidationService');
+const validationService = require('../services/validationService');
 
 // <-- TESTED -->
 
@@ -6,7 +6,7 @@ const productValidationService = require('../services/productValidationService')
 const checkIfProductExists = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const productError = await productValidationService.checkIfProductExists(id);
+    const productError = await validationService.checkIfProductExists(id);
     if (productError) {
       return res.status(productError.code).json({ message: productError.message });
     }

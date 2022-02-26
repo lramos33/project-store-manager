@@ -1,4 +1,4 @@
-const productValidationService = require('../services/productValidationService');
+const validationService = require('../services/validationService');
 
 // <-- TESTED -->
 
@@ -6,7 +6,7 @@ const productValidationService = require('../services/productValidationService')
 const checkRegisteredProduct = async (req, res, next) => {
   try {
     const { name } = req.body;
-    const registeredError = await productValidationService.checkRegisteredProduct(name);
+    const registeredError = await validationService.checkRegisteredProduct(name);
     if (registeredError) {
       return res.status(registeredError.code).json({ message: registeredError.message });
     }
