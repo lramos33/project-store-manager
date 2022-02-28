@@ -23,8 +23,9 @@ app.put('/products/:id', bodyProductValidation, checkIfProductExists, productCon
 
 app.get('/sales', salesController.get);
 app.get('/sales/:id', salesController.getById);
-app.post('/sales', bodySalesValidation);
 app.put('/sales/:id', bodySalesValidation);
+
+app.post('/sales', bodySalesValidation, salesController.create);
 
 // <-- TO DO -->
 // app.delete('sales/:id',);
