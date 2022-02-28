@@ -44,8 +44,8 @@ const update = async (req, res, next) => {
   try {
     const { id } = req.params;
     const { name, quantity } = req.body;
-    const updatedProduct = await productService.update(+id, name, quantity);
-    return res.status(HTTP_OK).json(updatedProduct);
+    await productService.update(+id, name, quantity);
+    return res.status(HTTP_OK).json({ id, name, quantity });
   } catch (error) {
     next(error);
   }

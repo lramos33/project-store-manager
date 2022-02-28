@@ -46,7 +46,6 @@ const update = async (req, res, next) => {
   }
 };
 
-// <-- TO DO -->
 // const remove = (req, res, next) => {};
 
 module.exports = {

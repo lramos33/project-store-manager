@@ -14,7 +14,6 @@ const create = async (name, quantity) => {
 
 const update = async (id, name, quantity) => {
   await productModel.update(id, name, quantity);
-  return { id, name, quantity }; 
 };
 
 const remove = async (id) => {
