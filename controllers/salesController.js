@@ -36,14 +36,23 @@ const create = async (req, res, next) => {
   }
 };
 
+const update = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const result = await salesService.update(id, req.body);
+    return res.status(HTTP_OK).json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
 // <-- TO DO -->
-// const update = (req, res, next) => {};
 // const remove = (req, res, next) => {};
 
 module.exports = {
   get,
   getById,
   create,
-  // update,
+  update,
   // remove,
 };

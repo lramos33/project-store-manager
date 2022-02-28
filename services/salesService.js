@@ -20,14 +20,24 @@ const create = async (sales) => {
   });
 };
 
+const update = async (saleId, sale) => {
+  sale.forEach(async (item) => {
+    await salesModel.update(saleId, item.productId, item.quantity);
+  });
+
+  return ({
+    saleId,
+    itemUpdated: sale,
+  });
+};
+
 // <-- TO DO -->
-// const update = () => {};
 // const remove = () => {};
 
 module.exports = {
   get,
   getById,
   create,
-  // update,
+  update,
   // remove,
 };
