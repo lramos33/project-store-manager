@@ -33,8 +33,19 @@ const getById = async (req, res, next) => {
 const create = async (req, res, next) => {
   try {
     const { name, quantity } = req.body;
-    const productCreated = await productService.create(name, quantity);
-    return res.status(HTTP_CREATED).json(productCreated);
+    const createdProduct = await productService.create(name, quantity);
+    return res.status(HTTP_CREATED).json(createdProduct);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const update = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { name, quantity } = req.body;
+    const updatedProduct = await productService.update(+id, name, quantity);
+    return res.status(HTTP_OK).json(updatedProduct);
   } catch (error) {
     next(error);
   }
@@ -48,18 +59,6 @@ const remove = async (req, res, next) => {
       return res.status(HTTP_NOT_FOUND).json({ message: 'Product not found' });
     }
     return res.status(HTTP_NO_CONTENT).end();
-  } catch (error) {
-    next(error);
-  }
-};
-
-// <-- TO DO -->
-const update = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    const { name, quantity } = req.body;
-    const updatedProduct = await productService.update(+id, name, quantity);
-    return res.status(HTTP_OK).json(updatedProduct);
   } catch (error) {
     next(error);
   }

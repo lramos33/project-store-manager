@@ -15,7 +15,7 @@ const getById = async (id) => {
     SELECT * FROM StoreManager.products
     WHERE id = ?`,
     [id]);
-  return result[0];
+  return result[0]; // Index 0 to change result from [{...}] to {...}
 };
 
 const getByName = async (name) => {
@@ -31,7 +31,15 @@ const create = async (name, quantity) => {
     INSERT INTO StoreManager.products
     (name, quantity) VALUES (?, ?)`,
     [name, quantity]);
-  return { id: result.insertId, name, quantity };
+  return result;
+};
+
+const update = async (id, name, quantity) => {
+  await connection.execute(`
+    UPDATE StoreManager.products
+    SET name = ?, quantity = ?
+    WHERE id = ?`,
+    [name, quantity, id]);
 };
 
 const remove = async (id) => {
@@ -39,17 +47,7 @@ const remove = async (id) => {
     DELETE FROM StoreManager.products
     WHERE id = ?`,
     [id]);
-  return result.affectedRows;
-};
-
-// <-- TO DO -->
-const update = async (id, name, quantity) => {
-  await connection.execute(`
-    UPDATE StoreManager.products
-    SET name = ?, quantity = ?
-    WHERE id = ?`,
-    [name, quantity, id]);
-  return { id, name, quantity };
+  return result;
 };
 
 module.exports = {
