@@ -6,8 +6,6 @@ const HTTP_NO_CONTENT = 204;
 const HTTP_NOT_FOUND = 404;
 
 // <-- TESTED -->
-
-// <-- DONE -->
 const get = async (_req, res, next) => {
   try {
     const result = await productService.get();
@@ -21,9 +19,6 @@ const getById = async (req, res, next) => {
   try {
     const { id } = req.params;
     const result = await productService.getById(+id);
-    if (!result) {
-      return res.status(HTTP_NOT_FOUND).json({ message: 'Product not found' });
-    }
     return res.status(HTTP_OK).json(result);
   } catch (error) {
     next(error);
@@ -51,13 +46,11 @@ const update = async (req, res, next) => {
   }
 };
 
+// <-- DONE -->
 const remove = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const affectedRows = await productService.remove(+id);
-    if (!affectedRows) {
-      return res.status(HTTP_NOT_FOUND).json({ message: 'Product not found' });
-    }
+    await productService.remove(+id);
     return res.status(HTTP_NO_CONTENT).end();
   } catch (error) {
     next(error);

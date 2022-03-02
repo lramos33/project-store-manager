@@ -17,8 +17,9 @@ const update = async (id, name, quantity) => {
 };
 
 const remove = async (id) => {
-  const removedProduct = await productModel.remove(id);
-  return removedProduct.affectedRows;
+  await productModel.remove(id);
+  // const removedProduct = await productModel.remove(id);
+  // return removedProduct.affectedRows;
 };
 
 module.exports = {

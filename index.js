@@ -16,8 +16,8 @@ app.use(express.json());
 
 // <-- DONE -->
 app.get('/products', productController.get);
-app.get('/products/:id', productController.getById);
-app.delete('/products/:id', productController.remove);
+app.get('/products/:id', checkIfProductExists, productController.getById);
+app.delete('/products/:id', checkIfProductExists, productController.remove);
 app.post('/products', bodyProductValidation, checkRegisteredProduct, productController.create);
 app.put('/products/:id', bodyProductValidation, checkIfProductExists, productController.update);
 
