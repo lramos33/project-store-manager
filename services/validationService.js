@@ -5,9 +5,6 @@ const HTTP_NOT_FOUND = 404;
 const HTTP_UNPROCESSABLE_ENTITY = 422;
 const HTTP_CONFLICT = 409;
 
-// <-- TESTED -->
-
-// <-- DONE -->
 const validateProductName = (name) => {
   if (!name) {
     return { 

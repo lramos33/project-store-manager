@@ -4,9 +4,6 @@ const HTTP_OK = 200;
 const HTTP_CREATED = 201;
 const HTTP_NOT_FOUND = 404;
 
-// <-- TESTED -->
-
-// <-- DONE -->
 const get = async (_req, res, next) => {
   try {
     const result = await salesService.get();

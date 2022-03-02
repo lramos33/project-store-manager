@@ -1,8 +1,5 @@
 const validationService = require('../services/validationService');
 
-// <-- TESTED -->
-
-// <-- DONE -->
 const bodySalesValidation = (req, res, next) => {
   try {
     const productIdError = req.body.map((sale) => sale.productId)

@@ -1,8 +1,5 @@
 const validationService = require('../services/validationService');
 
-// <-- TESTED -->
-
-// <-- DONE -->
 const checkIfProductExists = async (req, res, next) => {
   try {
     const { id } = req.params;

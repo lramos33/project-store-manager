@@ -3,9 +3,7 @@ const productService = require('../services/productService');
 const HTTP_OK = 200;
 const HTTP_CREATED = 201;
 const HTTP_NO_CONTENT = 204;
-const HTTP_NOT_FOUND = 404;
 
-// <-- TESTED -->
 const get = async (_req, res, next) => {
   try {
     const result = await productService.get();
@@ -46,7 +44,6 @@ const update = async (req, res, next) => {
   }
 };
 
-// <-- DONE -->
 const remove = async (req, res, next) => {
   try {
     const { id } = req.params;

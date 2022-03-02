@@ -1,8 +1,5 @@
 const productModel = require('../models/productModel');
 
-// <-- TESTED -->
-
-// <-- DONE -->
 const get = async () => productModel.get();
 
 const getById = async (id) => productModel.getById(id); 
@@ -18,8 +15,6 @@ const update = async (id, name, quantity) => {
 
 const remove = async (id) => {
   await productModel.remove(id);
-  // const removedProduct = await productModel.remove(id);
-  // return removedProduct.affectedRows;
 };
 
 module.exports = {

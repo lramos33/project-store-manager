@@ -1,8 +1,5 @@
 const validationService = require('../services/validationService');
 
-// <-- TESTED -->
-
-// <-- DONE -->
 const checkRegisteredProduct = async (req, res, next) => {
   try {
     const { name } = req.body;

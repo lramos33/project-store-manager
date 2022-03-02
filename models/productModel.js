@@ -1,8 +1,5 @@
 const connection = require('./connection');
 
-// <-- TESTED -->
-
-// <-- DONE -->
 const get = async () => {
   const [result] = await connection.execute(`
     SELECT * FROM StoreManager.products

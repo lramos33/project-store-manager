@@ -1,8 +1,5 @@
 const salesModel = require('../models/salesModel');
 
-// <-- TESTED -->
-
-// <-- DONE -->
 const get = async () => salesModel.get();
 
 const getById = async (id) => salesModel.getById(id);

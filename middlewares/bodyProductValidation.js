@@ -1,8 +1,5 @@
 const validationService = require('../services/validationService');
 
-// <-- TESTED -->
-
-// <-- DONE -->
 const bodyProductValidation = (req, res, next) => {
   try {
     const { name, quantity } = req.body;
