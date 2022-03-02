@@ -28,8 +28,16 @@ const GET_BY_ID_RESPONSE = {
   "quantity": 10,
 };
 
-describe('When calling get service', () => {
+const CREATE_RESPONSE = {
+  fieldCount: 0,
+  affectedRows: 1,
+  insertId: 1,
+  info: '',
+  serverStatus: 2,
+  warningStatus: 0
+}
 
+describe('When calling get service', () => {
   before(() => {
     sinon.stub(productModel, 'get').resolves(GET_RESPONSE);
   });
@@ -40,7 +48,6 @@ describe('When calling get service', () => {
 
   it('Returns an array of objects', async () => {
     const products = await productService.get();
-
     expect(products).to.be.an('array');
     expect(products).not.to.be.empty;
     products.forEach((product) => expect(product).to.be.an('object'));
@@ -48,9 +55,8 @@ describe('When calling get service', () => {
 });
 
 describe('When calling getById service', () => {
-
   before(() => {
-    sinon.stub(productModel, 'getById').resolves(GET_BY_ID_RESPONSE)
+    sinon.stub(productModel, 'getById').resolves(GET_BY_ID_RESPONSE);
   });
 
   after(() => {
@@ -60,5 +66,51 @@ describe('When calling getById service', () => {
   it('Returns an object', async () => {
     const product = await productService.getById();
     expect(product).to.be.an('object');
+  });
+});
+
+describe('When calling create service', () => {
+  before(() => {
+    sinon.stub(productModel, 'create').resolves(CREATE_RESPONSE);
+  });
+
+  after(() => {
+    productModel.create.restore();
+  });
+
+  it('Returns an object with insert data', async () => {
+    const result = await productService.create();
+    expect(result).to.be.an('object');
+    expect(result).not.to.be.empty;
+  });
+});
+
+describe('When calling update service', () => {
+  before(() => {
+    sinon.stub(productModel, 'update').resolves();
+  });
+
+  after(() => {
+    productModel.update.restore();
+  });
+
+  it('product.update must be called', async () => {
+    await productService.update();
+    expect(productModel.update.called).to.be.equal(true);
+  });
+});
+
+describe('When calling remove service', () => {
+  before(() => {
+    sinon.stub(productModel, 'remove').resolves();
+  });
+
+  after(() => {
+    productModel.remove.restore();
+  });
+
+  it('product.remove must be called', async () => {
+    await productService.remove();
+    expect(productModel.remove.called).to.be.equal(true);
   });
 });
