@@ -79,29 +79,6 @@ describe('When calling getById controller', () => {
 
   });
 
-  describe('In case product does not exist', () => {
-    before(() => {
-      req.params = { id: 0 }
-      res.status = sinon.stub().returns(res);
-      res.json = sinon.stub().returns();
-      sinon.stub(productService, 'getById').resolves();
-    });
-
-    after(() => {
-      productService.getById.restore();
-    });
-
-    it('Returns status 404', async () => {
-      await productController.getById(req, res, next);
-      expect(res.status.calledWith(404)).to.be.equal(true);
-    });
-
-    it('Returns a not found message', async () => {
-      await productController.getById(req, res, next);
-      expect(res.json.calledWith({ message: 'Product not found' })).to.be.equal(true);
-    });
-  });
-
   describe('In case of error', () => {
     const err = Error('Error message');
 
@@ -175,8 +152,8 @@ describe('When calling update controller', () => {
 
   describe('In case of success', () => {
     before(() => {
-      req.params = { id: 1 }
-      req.body = { name: "Machado do Thor", quantity: 20 }
+      req.params = { id: 1 };
+      req.body = { name: "Machado do Thor", quantity: 20 };
       res.status = sinon.stub().returns(res);
       res.json = sinon.stub().returns();
       sinon.stub(productService, 'update').returns();
@@ -203,7 +180,7 @@ describe('When calling update controller', () => {
   });
 
   describe('In case of error', () => {
-    const err = Error('error message');
+    const err = Error('Error message');
 
     before(() => {
       next = sinon.stub().returns();
@@ -216,6 +193,59 @@ describe('When calling update controller', () => {
 
     it('The error is passed to the next error handler', async () => {
       await productController.update(req, res, next);
+      expect(next.calledWith(sinon.match(err))).to.be.equal(true);
+    });
+  });
+});
+
+describe('When calling delete controller', () => {
+  const req = {}; 
+  const res ={}; 
+  let next = () => {};
+
+  describe('In case of success', () => {
+    before(() => {
+      req.params = { id: 1 };
+      res.status = sinon.stub().returns(res);
+      res.end = sinon.stub().returns();
+      sinon.stub(productService, 'remove').returns();
+    });
+
+    after(() => {
+      productService.remove.restore();
+    });
+
+    it('productService.remove must be called', async () => {
+      await productController.remove(req, res, next);
+      expect(productService.remove.called).to.be.equal(true);
+    });
+
+    it('Returns status 204', async () => {
+      await productController.remove(req, res, next);
+      expect(res.status.calledWith(204)).to.be.equal(true);
+    });
+
+    it('Returns nothing, ends the request', async () => {
+      await productController.update(req, res, next);
+      expect(res.end.called).to.be.equal(true);
+    });
+
+  });
+
+  describe('In case of error', () => {
+    const err = Error('Error message');
+
+    before(() => {
+      next = sinon.stub().returns();
+      sinon.stub(productService, 'remove').throws(err);
+    });
+
+    after(() => {
+      productService.remove.restore();
+    });
+
+    it('The error is passed to the next error handler', async () => {
+      await productController.remove(req, res, next);
       expect(next.calledWith(sinon.match(err))).to.be.equal(true);
     });
   });
