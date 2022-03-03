@@ -2,6 +2,7 @@ const salesService = require('../services/salesService');
 
 const HTTP_OK = 200;
 const HTTP_CREATED = 201;
+const HTTP_NO_CONTENT = 204;
 const HTTP_NOT_FOUND = 404;
 
 const get = async (_req, res, next) => {
@@ -43,12 +44,20 @@ const update = async (req, res, next) => {
   }
 };
 
-// const remove = (req, res, next) => {};
+const remove = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    await salesService.remove(+id);
+    return res.status(HTTP_NO_CONTENT).end();
+  } catch (error) {
+    next(error);
+  }
+};
 
 module.exports = {
   get,
   getById,
   create,
   update,
-  // remove,
+  remove,
 };

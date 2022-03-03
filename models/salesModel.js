@@ -50,7 +50,12 @@ const update = async (saleId, productId, productQuantity) => {
     [productQuantity, saleId, productId]);
 };
 
-// const remove = () => {};
+const remove = async (id) => {
+  await connection.execute(`
+    DELETE FROM StoreManager.sales
+    WHERE id = ?`,
+    [id]);
+};
 
 module.exports = {
   get,
@@ -58,5 +63,5 @@ module.exports = {
   createNewSale,
   insertIntoNewSale,
   update,
-  // remove,
+  remove,
 };

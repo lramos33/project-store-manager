@@ -1,4 +1,5 @@
 const productModel = require('../models/productModel');
+const salesModel = require('../models/salesModel');
 
 const HTTP_BAD_REQUEST = 400;
 const HTTP_NOT_FOUND = 404;
@@ -59,10 +60,20 @@ const validateProductId = (id) => {
   }
 };
 
+const checkIfSaleExists = async (id) => {
+  const sale = await salesModel.getById(id);
+  if (sale.length === 0) {
+    return {
+      code: HTTP_NOT_FOUND,
+      message: 'Sale not found' };
+  }
+};
+
 module.exports = {
   validateProductName,
   validateProductQuantity,
   checkRegisteredProduct,
   checkIfProductExists,
   validateProductId,
+  checkIfSaleExists,
 };
