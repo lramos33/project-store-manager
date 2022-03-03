@@ -69,6 +69,14 @@ const checkIfSaleExists = async (id) => {
   }
 };
 
+const quantityValidation = (saleQuantity, availableQuantity) => {
+  if (saleQuantity > availableQuantity) {
+    return {
+      code: HTTP_UNPROCESSABLE_ENTITY,
+      message: 'Such amount is not permitted to sell' };
+  }
+};
+
 module.exports = {
   validateProductName,
   validateProductQuantity,
@@ -76,4 +84,5 @@ module.exports = {
   checkIfProductExists,
   validateProductId,
   checkIfSaleExists,
+  quantityValidation,
 };

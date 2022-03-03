@@ -9,15 +9,12 @@ const checkRegisteredProduct = require('./middlewares/checkRegisteredProduct');
 const checkIfProductExists = require('./middlewares/checkIfProductExists');
 const bodySalesValidation = require('./middlewares/bodySalesValidation');
 const checkIfSaleExists = require('./middlewares/checkIfSaleExists');
-
 const updateQuantity = require('./middlewares/updateQuantity');
+const quantityValidation = require('./middlewares/quantityValidation');
 
 const app = express();
 app.use(express.json());
 
-// <-- TESTED -->
-
-// <-- DONE -->
 app.get('/products', productController.get);
 app.get('/products/:id', checkIfProductExists, productController.getById);
 app.delete('/products/:id', checkIfProductExists, productController.remove);
@@ -26,10 +23,13 @@ app.put('/products/:id', bodyProductValidation, checkIfProductExists, productCon
 
 app.get('/sales', salesController.get);
 app.get('/sales/:id', salesController.getById);
-app.post('/sales', bodySalesValidation, updateQuantity.createSale, salesController.create);
-app.put('/sales/:id', bodySalesValidation, salesController.update);
-
 app.delete('/sales/:id', checkIfSaleExists, updateQuantity.deleteSale, salesController.remove);
+app.post('/sales', 
+  bodySalesValidation,
+  quantityValidation,
+  updateQuantity.createSale,
+  salesController.create);
+app.put('/sales/:id', bodySalesValidation, salesController.update);
 
 app.use(error);
 

@@ -22,7 +22,6 @@ const deleteSale = async (req, res, next) => {
       await productService.addQuantity(productId, quantity);
     });
 
-    console.log(sale);
     next();
   } catch (error) {
     next(error);
