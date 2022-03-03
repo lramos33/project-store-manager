@@ -46,6 +46,22 @@ const remove = async (id) => {
     [id]);
 };
 
+const subtractQuantity = async (id, quantity) => {
+  await connection.execute(`
+    UPDATE StoreManager.products
+    SET quantity = quantity - ?
+    WHERE id = ?`,
+    [quantity, id]);
+};
+
+const addQuantity = async (id, quantity) => {
+  await connection.execute(`
+    UPDATE StoreManager.products
+    SET quantity = quantity + ?
+    WHERE id = ?`,
+    [quantity, id]);
+};
+
 module.exports = {
   get,
   getById,
@@ -53,4 +69,6 @@ module.exports = {
   create,
   update,
   remove,
+  subtractQuantity,
+  addQuantity,
 };

@@ -17,10 +17,20 @@ const remove = async (id) => {
   await productModel.remove(id);
 };
 
+const subtractQuantity = async (id, quantity) => {
+  await productModel.subtractQuantity(id, quantity);
+};
+
+const addQuantity = async (id, quantity) => {
+  await productModel.addQuantity(id, quantity);
+};
+
 module.exports = {
   get,
   getById,
   create,
   update,
   remove,
+  subtractQuantity,
+  addQuantity,
 };
