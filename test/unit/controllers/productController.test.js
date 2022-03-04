@@ -57,7 +57,7 @@ describe('When calling getById controller', () => {
 
   describe('In case of success', () => {
     before(() => {
-      req.params = { id: 1 }
+      req.params = { id: 1 };
       res.status = sinon.stub().returns(res);
       res.json = sinon.stub().returns();
       sinon.stub(productService, 'getById').resolves({});
@@ -76,7 +76,6 @@ describe('When calling getById controller', () => {
       await productController.getById(req, res, next);
       expect(res.json.calledWith(sinon.match.object)).to.be.equal(true);
     });
-
   });
 
   describe('In case of error', () => {
@@ -226,7 +225,7 @@ describe('When calling delete controller', () => {
     });
 
     it('Returns nothing, ends the request', async () => {
-      await productController.update(req, res, next);
+      await productController.remove(req, res, next);
       expect(res.end.called).to.be.equal(true);
     });
 

@@ -2,6 +2,7 @@ const sinon = require("sinon");
 const { expect } = require("chai");
 
 const productModel = require('../../../models/productModel');
+const salesModel = require('../../../models/salesModel');
 const validationService = require('../../../services/validationService');
 
 const GET_BY_NAME_RESPONSE = [ 
@@ -176,6 +177,60 @@ describe('When calling validateProductId service', () => {
     });
 
     it('Message value must be ""productId" is required"', () => {
+      expect(result.message).to.be.a('string');
+      expect(result.message).to.be.equal(MESSAGE);
+    });
+  });
+});
+
+describe('When calling checkIfSaleExists service', () => {
+  describe('When sale not found', () => {
+    const MESSAGE = 'Sale not found';
+
+    before(() => {
+      sinon.stub(salesModel, 'getById').resolves([]);
+    });
+
+    after(() => {
+      salesModel.getById.restore();
+    })
+
+    it('Returns an object with code and message keys', async () => {
+      const result = await validationService.checkIfSaleExists();
+      expect(result).to.be.an('object');
+      expect(result).not.to.be.empty;
+      expect(result).to.include.all.keys('code', 'message');
+    });
+
+    it('Code value must be 404', async () => {
+      const result = await validationService.checkIfSaleExists();
+      expect(result.code).to.be.equal(404);
+    });
+
+    it('Message value must be "Sale not found"', async () => {
+      const result = await validationService.checkIfSaleExists();
+      expect(result.message).to.be.a('string');
+      expect(result.message).to.be.equal(MESSAGE);
+    });
+  });
+});
+
+describe('When calling quantityValidation service', () => {
+  describe('In case of saleQuantity > availableQuantity', () => {
+    const MESSAGE = 'Such amount is not permitted to sell';
+    const result = validationService.quantityValidation(10, 5);
+
+    it('Returns an object with code and message keys', () => {
+      expect(result).to.be.an('object');
+      expect(result).not.to.be.empty;
+      expect(result).to.include.all.keys('code', 'message');
+    });
+
+    it('Code value must be 422', () => {
+      expect(result.code).to.be.equal(422);
+    });
+
+    it('Message value must be "Such amount is not permitted to sell"', () => {
       expect(result.message).to.be.a('string');
       expect(result.message).to.be.equal(MESSAGE);
     });

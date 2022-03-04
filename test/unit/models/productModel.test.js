@@ -52,7 +52,7 @@ describe('When calling get model', () => {
 
   after(() => {
     connection.execute.restore();
-  })
+  });
 
   it('Returns an array of objects', async () => {
     const products = await productModel.get();
@@ -137,6 +137,36 @@ describe('When calling remove model', () => {
 
   it('connection.execute must be called', async () => {
     await productModel.remove();
+    expect(connection.execute.called).to.be.equal(true);
+  });
+});
+
+describe('When calling subtractQuantity model', () => {
+  before(() => {
+    sinon.stub(connection, 'execute').resolves();
+  });
+
+  after(() => {
+    connection.execute.restore();
+  });
+
+  it('connection.execute must be called', async () => {
+    await productModel.subtractQuantity();
+    expect(connection.execute.called).to.be.equal(true);
+  });
+});
+
+describe('When calling addQuantity model', () => {
+  before(() => {
+    sinon.stub(connection, 'execute').resolves();
+  });
+
+  after(() => {
+    connection.execute.restore();
+  });
+
+  it('connection.execute must be called', async () => {
+    await productModel.addQuantity();
     expect(connection.execute.called).to.be.equal(true);
   });
 });

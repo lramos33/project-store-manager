@@ -35,7 +35,7 @@ const CREATE_RESPONSE = {
   info: '',
   serverStatus: 2,
   warningStatus: 0
-}
+};
 
 describe('When calling get service', () => {
   before(() => {
@@ -61,7 +61,7 @@ describe('When calling getById service', () => {
 
   after(() => {
     productModel.getById.restore();
-  })
+  });
 
   it('Returns an object', async () => {
     const product = await productService.getById();
@@ -94,7 +94,7 @@ describe('When calling update service', () => {
     productModel.update.restore();
   });
 
-  it('product.update must be called', async () => {
+  it('productModel.update must be called', async () => {
     await productService.update();
     expect(productModel.update.called).to.be.equal(true);
   });
@@ -109,8 +109,38 @@ describe('When calling remove service', () => {
     productModel.remove.restore();
   });
 
-  it('product.remove must be called', async () => {
+  it('productModel.remove must be called', async () => {
     await productService.remove();
     expect(productModel.remove.called).to.be.equal(true);
+  });
+});
+
+describe('When calling subtractQuantity service', () => {
+  before(() => {
+    sinon.stub(productModel, 'subtractQuantity').resolves();
+  });
+
+  after(() => {
+    productModel.subtractQuantity.restore();
+  });
+
+  it('productModel.subtractQuantity must be called', async () => {
+    await productService.subtractQuantity();
+    expect(productModel.subtractQuantity.called).to.be.equal(true);
+  });
+});
+
+describe('When calling addQuantity service', () => {
+  before(() => {
+    sinon.stub(productModel, 'addQuantity').resolves();
+  });
+
+  after(() => {
+    productModel.addQuantity.restore();
+  });
+
+  it('productModel.addQuantity must be called', async () => {
+    await productService.addQuantity();
+    expect(productModel.addQuantity.called).to.be.equal(true);
   });
 });
