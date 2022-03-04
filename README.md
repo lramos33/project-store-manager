@@ -1,4 +1,4 @@
-<h1 align="center">PROJETO</h1>
+<h1 align="center">Project Store Manager</h1>
 
 <p align="center">✔️ Concluded</p>
 
