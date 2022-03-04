@@ -476,7 +476,7 @@ Além da API, também foi desenvolvido toda a cobertura de testes para as camada
   > :point_right: Será validado que ao menos 24 linhas são cobertas pelos testes.
 </details>
 
-## 🎁 Requisitos bônus
+### Requisitos bônus
 
 - [x] 10. Crie um endpoint para deletar uma venda
 
