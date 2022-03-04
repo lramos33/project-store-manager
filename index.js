@@ -13,11 +13,6 @@ app.use('/products', productsRouter);
 app.use('/sales', salesRouter);
 app.use(error);
 
-// <-- ENDPOINT AVALIADOR -->
-app.get('/', (_request, response) => {
-  response.send();
-});
-
 app.listen(process.env.PORT, () => {
-  console.log(`Escutando na porta ${process.env.PORT}`);
+  console.log(`listening on port ${process.env.PORT}`);
 });
