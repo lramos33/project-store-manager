@@ -1,8 +1,8 @@
 const sinon = require("sinon");
 const { expect } = require("chai");
 
-const productModel = require('../../../models/productModel');
-const productService = require('../../../services/productService');
+const productModel = require('../../models/productModel');
+const productService = require('../../services/productService');
 
 const GET_RESPONSE = [
   {

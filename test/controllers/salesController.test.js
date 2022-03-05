@@ -1,8 +1,8 @@
 const sinon = require("sinon");
 const { expect } = require("chai");
 
-const salesService = require("../../../services/salesService");
-const salesController = require("../../../controllers/salesController");
+const salesService = require("../../services/salesService");
+const salesController = require("../../controllers/salesController");
 
 const CREATE_BODY_REQUEST = [
   {

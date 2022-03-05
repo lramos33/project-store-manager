@@ -1,9 +1,9 @@
 const sinon = require("sinon");
 const { expect } = require("chai");
 
-const productModel = require('../../../models/productModel');
-const salesModel = require('../../../models/salesModel');
-const validationService = require('../../../services/validationService');
+const productModel = require('../../models/productModel');
+const salesModel = require('../../models/salesModel');
+const validationService = require('../../services/validationService');
 
 const GET_BY_NAME_RESPONSE = [ 
   {
